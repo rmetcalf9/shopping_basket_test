@@ -14,6 +14,9 @@ The base app starts me off with the main structure. The following files were cre
 \APIContainerPythonVersion\test\test_shoppingBasketAPI.py
 Other files came from my previously built template and may have had slight minor alterations.
 
+## swagger.json
+
+TODO
 
 
 ## Running tests
@@ -33,14 +36,13 @@ If you edit code while this is running tests should automatically re-run. You ne
  - python3 and pip
  - Install requirments from \APIContainerPythonVersion\src\requirements.txt and \APIContainerPythonVersion\testContainer\requirements.txt
  - EXTURL enviroment variable exits example: "http://mymachinehostname"
- 
- 
+  
  
 If you want to build the container and use the Docker test container:
  - Docker (Tested with version 17.12.0-ce)
  - git (with commit rights to repo)
  
-## Running the unit tests
+## Running the unit tests directly
 
 Tests can be run with the command nosetests --rednose ./test however I like to continusly run these during development and I use continous_test.sh to achieve this.
 

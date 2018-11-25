@@ -5,7 +5,7 @@ import json
 class test_api(testHelperAPIClient):
   def test_getShoppingBasketWithZeroItems(self):
     return
-'''
+
   def test_getShoppingBasketWithZeroItems(self):
     inputPayloadWithZeroItems = {
       'Basket': {
@@ -19,11 +19,11 @@ class test_api(testHelperAPIClient):
         ]
       }
     }
-    actualResult = self.testClient.post('/api/basket/',json=inputPayloadWithZeroItems)
+    actualResult = self.testClient.post('/api/shoppingBasket/',json=inputPayloadWithZeroItems)
     self.assertEqual(actualResult.status_code, 200)
     actualResultJSON = json.loads(actualResult.get_data(as_text=True))
     self.assertJSONStringsEqual(actualResultJSON, expRes)
-
+'''
   def test_getShoppingBasketWithSingleItem(self):
     inputPayloadWithZeroItems = {
       'Basket': {

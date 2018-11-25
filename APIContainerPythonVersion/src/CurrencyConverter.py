@@ -48,10 +48,13 @@ class CurrencyConverter:
   
   def loadRate(self):
     self.rateLoadedTime = self.appObj.getCurDateTime() #Must use appObj to get time to ensure we get proper state for test cases
-    webresponseJSON = getLatestRatesFromFixerIO(self.APIKEY)["rates"]
-    for rate in webresponseJSON:
+    webresponseJSON = getLatestRatesFromFixerIO(self.APIKEY)
+    if "rates" not in webresponseJSON:
+      print(webresponseJSON)
+      raise BadServiceResponse
+    for rate in webresponseJSON["rates"]:
       if rate=="GBP":
-        self.GBPtoUSDConversionMultiplier=1/(webresponseJSON[rate])
+        self.GBPtoUSDConversionMultiplier=1/(webresponseJSON["rates"][rate])
         return
     raise MissingGBPRateException
   
