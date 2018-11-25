@@ -10,9 +10,9 @@ Build and tag a new docker image
 dockerBuildAndTag.sh
 ```
 
-Run the newly created container
+Run the newly created container (Replace XXX with APIKEY)
 ```
-docker run --network pythontestingnetwork --name shopping_basket_technical_test -p 8098:8098 -e APIAPP_APIURL="${EXTURL}:${EXTPORT}/api" -e APIAPP_APIDOCSURL="${EXTURL}:${EXTPORT}/apidocs" -d metcarob/shopping_basket_technical_test:latest
+docker run --network pythontestingnetwork --name shopping_basket_technical_test -p 8098:8098 -e APIAPP_APIURL="${EXTURL}:${EXTPORT}/api" -e APIAPP_APIDOCSURL="${EXTURL}:${EXTPORT}/apidocs" -e APIAPP_FIXERIO_APIKEY="XXX" -d metcarob/shopping_basket_technical_test:latest
 ```
 
 Run tests against the container and make sure it is working
