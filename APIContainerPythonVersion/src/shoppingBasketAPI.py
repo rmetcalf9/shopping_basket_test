@@ -40,7 +40,7 @@ def getAPIModel(appObj):
 Function called by appObj in order to register the API
 '''
 def registerAPI(appObj):
-  nsShoppingBasket = appObj.flastRestPlusAPIObject.namespace('shoppingBasket', description='Shopping basket cost caculation')
+  nsShoppingBasket = appObj.flastRestPlusAPIObject.namespace('shoppingBasket', description='Shopping basket cost caculator')
   @nsShoppingBasket.route('/')
   class servceInfo(Resource):
     '''General Server Operations XXXXX'''

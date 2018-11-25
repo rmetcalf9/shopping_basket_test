@@ -28,6 +28,9 @@ class appObjClass(parAppObj):
   def initOnce(self):
     super(appObjClass, self).initOnce()
     registerShoppingBasketAPI(self)
+    self.flastRestPlusAPIObject.title = "Shopping Cart Caculator - Prototype API"
+    self.flastRestPlusAPIObject.description = "API created as part of technical test - Please ignore the default namespace"
+    
 
   def setTestingDateTime(self, val):
     self.curDateTimeOverrideForTesting = val
