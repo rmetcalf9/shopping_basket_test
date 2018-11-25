@@ -7,7 +7,7 @@ FROM alpine
 MAINTAINER Robert Metcalf
 
 COPY ./requirements.txt /test_requirements.txt
-COPY ../src/requirements.txt /main_app_requirements.txt
+COPY ./main_app_requirements.txt /main_app_requirements.txt
 
 
 RUN apk add --no-cache bash python3 curl python3-dev build-base linux-headers pcre-dev && \
@@ -19,7 +19,8 @@ RUN apk add --no-cache bash python3 curl python3-dev build-base linux-headers pc
     pip3 install -r /main_app_requirements.txt && \
     pip3 install -r /test_requirements.txt
 
-##docker build . -t metcarob/virtualpresencepicturetest:latest
-##docker run --network pythontestingnetwork --mount type=bind,source=$(pwd),target=/ext_volume metcarob/virtualpresencepicturetest:latest nosetests --rednose /ext_volume
+##Before building cp ../src/requirements.txt ./main_app_requirements.txt
+##docker build . -t metcarob/genericpythonapitester:latest
+##docker run --network pythontestingnetwork --mount type=bind,source=$(pwd),target=/ext_volume metcarob/genericpythonapitester:latest nosetests --rednose /ext_volume
 
-##docker run --network pythontestingnetwork --mount type=bind,source=$(pwd),target=/ext_volume metcarob/virtualpresencepicturetest:latest curl virtualpresencepicture:8098/apidocs/
+##docker run --network pythontestingnetwork --mount type=bind,source=$(pwd),target=/ext_volume metcarob/genericpythonapitester:latest curl virtualpresencepicture:8098/apidocs/

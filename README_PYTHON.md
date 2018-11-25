@@ -16,9 +16,16 @@ Other files came from my previously built template and may have had slight minor
 
 
 
-## Running Demo
+## Running tests
 
-TODO
+I have a developer machine setup (see Developer Enviroment section) but it is also possible to test and run the application in a portable way using docker.
+This can be achieved by running the following command from the \APIContainerPythonVersion directory in your clone of this repo:
+'''
+docker run --rm --mount type=bind,source=$(pwd),target=/ext_volume metcarob/genericpythonapitester:latest nosetests --exclude-dir=/ext_volume/testContainer --rednose /ext_volume/
+'''
+If you edit code while this is running tests should automatically re-run. You need to ctrl+c to finish.
+
+
 
 ## Developer Enviroment
 
