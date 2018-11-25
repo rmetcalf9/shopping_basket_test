@@ -1,7 +1,5 @@
 # shopping_basket_technical_test
 
-This repository contains code for the shopping basket technical test.
-
 ## Technology Choice
 Due to the 2 hour time guideline and fact this is a prototype service I have chosen to implement my Python base app. (I have previously blogged about this at https://code.metcarob.com/node/236 ) This lets me skip over setting up the testing framework and container build pipeline and quickly start writing the service specific code. This lets me quickly prototype new API's, build them and deploy them to container enviroments in very little time.
 
@@ -19,7 +17,7 @@ Other files came from my previously built template and may have had slight minor
 
 ## swagger.json
 
-TODO
+I am using flaskrestplus which is a python library which provides request marsheling and autogenerates the swagger.json files based on datamodels defined in the code. For reference I have saved an example of it's output [here](./APIContainerPythonVersion/example_files/swagger.json)
 
 ## Docker images
 
