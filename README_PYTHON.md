@@ -19,6 +19,11 @@ Other files came from my previously built template and may have had slight minor
 
 TODO
 
+## Docker images
+
+The main API image is in docker hub: https://hub.docker.com/r/metcarob/shopping_basket_test/
+I also produced a tester image to preform container tests: https://hub.docker.com/r/metcarob/genericpythonapitester/
+
 
 ## Running tests
 
