@@ -8,11 +8,12 @@ Due to the 2 hour time guideline and fact this is a prototype service I have cho
 ## Code produced during the test
 
 The base app starts me off with the main structure. The following files were created solely for this test:
-\APIContainerPythonVersion\src\CurrencyConverter.py
-\APIContainerPythonVersion\test\test_CurrencyConverter.py
-\APIContainerPythonVersion\src\shoppingBasket.py
-\APIContainerPythonVersion\src\shoppingBasketAPI.py
-\APIContainerPythonVersion\test\test_shoppingBasketAPI.py
+
+ - [.\APIContainerPythonVersion\src\CurrencyConverter.py]
+ - [.\APIContainerPythonVersion\test\test_CurrencyConverter.py]
+ - [.\APIContainerPythonVersion\src\shoppingBasket.py]
+ - [.\APIContainerPythonVersion\src\shoppingBasketAPI.py]
+ - [.\APIContainerPythonVersion\test\test_shoppingBasketAPI.py]
 Other files came from my previously built template and may have had slight minor alterations.
 
 ## swagger.json
@@ -22,6 +23,7 @@ TODO
 ## Docker images
 
 The main API image is in docker hub: https://hub.docker.com/r/metcarob/shopping_basket_test/
+
 I also produced a tester image to preform container tests: https://hub.docker.com/r/metcarob/genericpythonapitester/
 
 
@@ -29,9 +31,9 @@ I also produced a tester image to preform container tests: https://hub.docker.co
 
 I have a developer machine setup (see Developer Enviroment section) but it is also possible to test and run the application in a portable way using docker.
 This can be achieved by running the following command from the \APIContainerPythonVersion directory in your clone of this repo:
-'''
+```
 docker run --rm --mount type=bind,source=$(pwd),target=/ext_volume metcarob/genericpythonapitester:latest nosetests --exclude-dir=/ext_volume/testContainer --rednose /ext_volume/
-'''
+```
 If you edit code while this is running tests should automatically re-run. You need to ctrl+c to finish.
 
 
@@ -40,7 +42,7 @@ If you edit code while this is running tests should automatically re-run. You ne
 
  - Linux based machine
  - python3 and pip
- - Install requirments from \APIContainerPythonVersion\src\requirements.txt and \APIContainerPythonVersion\testContainer\requirements.txt
+ - Install requirments from [.\APIContainerPythonVersion\src\requirements.txt] and [.\APIContainerPythonVersion\testContainer\requirements.txt]
  - EXTURL enviroment variable exits example: "http://mymachinehostname"
   
  
