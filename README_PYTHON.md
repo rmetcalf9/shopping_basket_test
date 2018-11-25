@@ -14,6 +14,7 @@ The base app starts me off with the main structure. The following files were cre
  - [./APIContainerPythonVersion/src/shoppingBasket.py](./APIContainerPythonVersion/src/shoppingBasket.py)
  - [./APIContainerPythonVersion/src/shoppingBasketAPI.py](./APIContainerPythonVersion/src/shoppingBasketAPI.py)
  - [./APIContainerPythonVersion/test/test_shoppingBasketAPI.py](./APIContainerPythonVersion/test/test_shoppingBasketAPI.py)
+
 Other files came from my previously built template and may have had slight minor alterations.
 
 ## swagger.json
@@ -49,7 +50,11 @@ If you edit code while this is running tests should automatically re-run. You ne
 If you want to build the container and use the Docker test container:
  - Docker (Tested with version 17.12.0-ce)
  - git (with commit rights to repo)
- 
+
+## Post clone setup
+
+You will need to copy run_app_developer_secret_example.sh to run_app_developer_secret.sh and make sure it's executable. Add your fixer.io APIKEY into this file.
+
 ## Running the unit tests directly
 
 Tests can be run with the command nosetests --rednose ./test however I like to continusly run these during development and I use continous_test.sh to achieve this.
