@@ -10,6 +10,7 @@ Due to the 2 hour time guideline and fact this is a prototype service I have cho
 The base app starts me off with the main structure. The following files were created solely for this test:
 \APIContainerPythonVersion\src\CurrencyConverter.py
 \APIContainerPythonVersion\test\test_CurrencyConverter.py
+\APIContainerPythonVersion\src\shoppingBasket.py
 \APIContainerPythonVersion\src\shoppingBasketAPI.py
 \APIContainerPythonVersion\test\test_shoppingBasketAPI.py
 Other files came from my previously built template and may have had slight minor alterations.
