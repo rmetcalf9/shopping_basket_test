@@ -40,7 +40,10 @@ def getAPIModel(appObj):
     'Totals': fields.Nested(totalModel)
   })  
 
-  
+def getInputModel(appObj):
+  return appObj.flastRestPlusAPIObject.model('Shopping Basket Input', {
+    'Basket': fields.Nested(getBasketModel(appObj))
+  })  
 
 
 '''
@@ -51,7 +54,7 @@ def registerAPI(appObj):
   @nsShoppingBasket.route('/')
   class servceInfo(Resource):
     '''Main job caculator endpoint'''
-    @nsShoppingBasket.expect(getBasketModel(appObj), validate=True)
+    @nsShoppingBasket.expect(getInputModel(appObj), validate=True)
     @nsShoppingBasket.doc('getserverinfo')
     @nsShoppingBasket.marshal_with(getAPIModel(appObj))
     @nsShoppingBasket.response(200, 'Success')
