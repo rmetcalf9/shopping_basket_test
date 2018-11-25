@@ -143,3 +143,6 @@ class test_api(testHelperAPIClient):
     discountToApply = int(round(totalGBP * (discountPercentage / 100),0))
     self.assertEqual(mockConvertFromGBPtoUSD.call_args_list,[call(totalGBP - discountToApply)],"Wrong calls to API")
 
+
+##TODO Test timelimit reached. My next task would be to create tests for error output and ensure the correct status codes are returned
+

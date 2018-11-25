@@ -5,6 +5,7 @@ from dateutil.relativedelta import relativedelta
 
 PriceValidatyDuration = relativedelta(minutes=30)
 InvalidRecievedCurrencyException = Exception("Invalid recieved currenct - can only use GBP")
+InvalidInputJSONException = Exception("Invalid recieved JSON")
 
 discountPercentage = 10 #candidate for external paramater
 
@@ -16,6 +17,11 @@ def caculateBasket(appObj, recievedBasketJSON):
    #Discount must be applyed before conversion
    totalPayableInGBP = 0
    totalPayableInUSD = 0
+   
+   if "Basket" not in recievedBasketJSON:
+     raise InvalidInputJSONException
+   if "Items" not in recievedBasketJSON["Basket"]:
+     raise InvalidInputJSONException
    
    basketItems = []
    for item in recievedBasketJSON["Basket"]["Items"]:
