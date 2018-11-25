@@ -14,13 +14,15 @@ This file contains the shopping basket API code.
 This generates the API Model. This is used by Flask_Rest_plus to geneate the swagger file and marshal response payloads
 this is where the data structure used in the API is described
 '''
-def getAPIModel(appObj):
+def getBasketModel(appObj):
   itemModel = appObj.flastRestPlusAPIObject.model('Item', {
     'Version': fields.String(default='DEFAULT', description='Version of container running on server')
   })
-  basketModel = appObj.flastRestPlusAPIObject.model('Basket', {
+  return appObj.flastRestPlusAPIObject.model('Basket', {
     'Items': fields.List(fields.Nested(itemModel))
   })
+
+def getAPIModel(appObj):
   currencyAmountModel = appObj.flastRestPlusAPIObject.model('Currency Amount', {
     'Amount': fields.Integer(default='0',description='Integer amount value (e.g. in GBP this will be pence, for USD it\'s cents)'),
     'CurrencyCode': fields.String(default='GBP', description='Currecny code')
@@ -30,10 +32,12 @@ def getAPIModel(appObj):
     'TotalPayable': fields.Nested(currencyAmountModel)
   })
   return appObj.flastRestPlusAPIObject.model('Shopping Basket Result', {
-    'Basket': fields.Nested(basketModel),
+    'Basket': fields.Nested(getBasketModel(appObj)),
     'PriceExpiry': fields.DateTime(dt_format=u'iso8601', description='Current server date time'),
     'Totals': fields.Nested(totalModel)
   })  
+
+  
 
 
 '''
@@ -43,7 +47,8 @@ def registerAPI(appObj):
   nsShoppingBasket = appObj.flastRestPlusAPIObject.namespace('shoppingBasket', description='Shopping basket cost caculator')
   @nsShoppingBasket.route('/')
   class servceInfo(Resource):
-    '''General Server Operations XXXXX'''
+    '''Main job caculator endpoint'''
+    @nsShoppingBasket.expect(getBasketModel(appObj), validate=True)
     @nsShoppingBasket.doc('getserverinfo')
     @nsShoppingBasket.marshal_with(getAPIModel(appObj))
     @nsShoppingBasket.response(200, 'Success')
