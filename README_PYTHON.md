@@ -15,6 +15,10 @@ The base app starts me off with the main structure. The following files were cre
 
 Other files came from my previously built template and may have had slight minor alterations.
 
+## Running example
+
+It is possible to run the example locally however I have also deployed it to my personal web server. [See here](./APIContainerPythonVersion/LIVETEST.md) for instructions to see a running version.
+
 ## swagger.json
 
 I am using flaskrestplus which is a python library which provides request marsheling and autogenerates the swagger.json files based on datamodels defined in the code. For reference I have saved an example of it's output [here](./APIContainerPythonVersion/example_files/swagger.json)
