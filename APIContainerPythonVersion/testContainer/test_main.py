@@ -2,7 +2,7 @@
 import unittest
 import requests
 
-baseURL="http://virtualpresencepicture:8098"
+baseURL="http://shopping_basket_technical_test:8098"
 
 class test_containerAPI(unittest.TestCase):
 #Actual tests below

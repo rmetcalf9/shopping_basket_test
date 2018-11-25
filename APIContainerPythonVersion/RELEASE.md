@@ -12,18 +12,18 @@ dockerBuildAndTag.sh
 
 Run the newly created container
 ```
-docker run --network pythontestingnetwork --name virtualpresencepicture -p 8098:8098 -e APIAPP_APIURL="${EXTURL}:${EXTPORT}/api" -e APIAPP_APIDOCSURL="${EXTURL}:${EXTPORT}/apidocs" -d metcarob/virtualpresencepicture:latest
+docker run --network pythontestingnetwork --name shopping_basket_technical_test -p 8098:8098 -e APIAPP_APIURL="${EXTURL}:${EXTPORT}/api" -e APIAPP_APIDOCSURL="${EXTURL}:${EXTPORT}/apidocs" -d metcarob/shopping_basket_technical_test:latest
 ```
 
 Run tests against the container and make sure it is working
 ```
-docker run --network pythontestingnetwork --mount type=bind,source=$(pwd),target=/ext_volume metcarob/virtualpresencepicturetest:latest nosetests --rednose /ext_volume/testContainer
+docker run --network pythontestingnetwork --mount type=bind,source=$(pwd),target=/ext_volume metcarob/genericpythonapitester:latest nosetests --rednose /ext_volume/testContainer
 ```
 
 Clean up and push change to git
 ```
-docker stop virtualpresencepicture
-docker rm virtualpresencepicture
+docker stop shopping_basket_technical_test
+docker rm shopping_basket_technical_test
 ```
 
 The new version and tag is already created. If the container fails the tests don't go into the docker hub and trigger the build.
