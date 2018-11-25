@@ -42,14 +42,17 @@ class test_api(testHelperAPIClient):
     actualResultJSON = json.loads(actualResult.get_data(as_text=True))
     self.assertJSONStringsEqual(actualResultJSON, expectedResult)
 
+    #If we have a 0 total cost the function hsould not try and convert
+    self.assertEqual(mockConvertFromGBPtoUSD.call_args_list,[],"Wrong calls to API")
+
+
   @patch('CurrencyConverter.CurrencyConverter.convertFromGBPtoUSD')
   def test_getShoppingBasketWithSingleItem(self, mockConvertFromGBPtoUSD):
     preConversionItemAmount = 2000
     postConversionItemAmount = 2368
     
-    discountAmount = int(round( postConversionItemAmount * (discountPercentage / 100),0))
-    print(discountAmount)
-    totalPayableAfterDiscount = postConversionItemAmount - ( discountAmount)
+    #since the discount is applied BEFORE the conversion and we are mocking the conversion function
+    #with a fixed result the discount amount will not effect the output
     
     responses = []
     responses.append(postConversionItemAmount)
@@ -80,7 +83,7 @@ class test_api(testHelperAPIClient):
       },
       'Totals': {
         'DiscountPercentage': 10,
-        'TotalPayable': {'Amount': totalPayableAfterDiscount, 'CurrencyCode': 'USD'}
+        'TotalPayable': {'Amount': postConversionItemAmount, 'CurrencyCode': 'USD'}
         },
       'PriceExpiry': expectedPriceExpiryDateTime.isoformat()
     }
@@ -88,4 +91,8 @@ class test_api(testHelperAPIClient):
     self.assertEqual(actualResult.status_code, 200)
     actualResultJSON = json.loads(actualResult.get_data(as_text=True))
     self.assertJSONStringsEqual(actualResultJSON, expectedResult)
+
+    #Finally we must also check the discount was correctly applied
+    discountToApply = preConversionItemAmount * (discountPercentage / 100)
+    self.assertEqual(mockConvertFromGBPtoUSD.call_args_list,[call(preConversionItemAmount - discountToApply)],"Wrong calls to API")
 

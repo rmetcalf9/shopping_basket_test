@@ -12,16 +12,24 @@ discountPercentage = 10 #candidate for external paramater
 def caculateBasket(appObj, recievedBasketJSON):
    curDatetime = appObj.getCurDateTime()
    
+   #Cacualte total in GBP then convert once
+   #Discount must be applyed before conversion
+   totalPayableInGBP = 0
    totalPayableInUSD = 0
    
    basketItems = []
    for item in recievedBasketJSON["Basket"]["Items"]:
      if item["ItemPrice"]["CurrencyCode"] != "GBP":
        raise InvalidRecievedCurrencyException
-     convertedAmount = appObj.currencyConverter.convertFromGBPtoUSD(item["ItemPrice"]["Amount"])
-     discountToApply = int(round(convertedAmount * (discountPercentage / 100),0))
-     totalPayableInUSD = (totalPayableInUSD + convertedAmount) - discountToApply
+     totalPayableInGBP = totalPayableInGBP + item["ItemPrice"]["Amount"]
      basketItems.append(item)
+    
+   if totalPayableInGBP != 0:
+     discountAmount = int(round(totalPayableInGBP * (discountPercentage / 100),0))
+     amountToConvert = totalPayableInGBP - discountAmount
+     convertedAmount = appObj.currencyConverter.convertFromGBPtoUSD(amountToConvert)
+     totalPayableInUSD = convertedAmount
+
    
    return { 
     'Basket': {
